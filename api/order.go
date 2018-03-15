@@ -46,6 +46,7 @@ type ProductDetails struct {
 	TrafficGB        int              `json:"trafficGB,omitempty"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies,omitempty"`
 	Nics             []Nic            `json:"nics,omitempty"`
+	HostGroupID      *int             `json:"hostGroupId,omitempty"`
 }
 
 type Install struct {
