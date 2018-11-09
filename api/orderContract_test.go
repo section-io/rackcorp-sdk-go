@@ -11,12 +11,12 @@ func TestOrderContractGet(t *testing.T) {
 	defer gock.Off()
 
 	const contractId = "543"
-	const responseBody = `{"contract":{"contractId":"543","customerId":"456","serviceBillId":"135","contractInfo":"1_","currency":"6","created":1514337760,"modified":1514337781,"lastBilled":false,"referenceID":"2816","notes":null,"status":"ACTIVE","type":"VIRTUALSERVER","deviceID":"678"},"code":"OK","message":"Contract lookup successful"}`
+	const responseBody = `{"contract":{"contractId":"543","customerId":"456","serviceBillId":"135","contractInfo":"1_","currency":"6","created":1514337760,"modified":1514337781,"lastBilled":false,"referenceID":"2816","notes":null,"status":"ACTIVE","type":"VIRTUALSERVER","deviceId":"678"},"code":"OK","message":"Contract lookup successful"}`
 
 	client := getTestClient(t)
 
 	gock.New("https://api.rackcorp.net").
-		Post("/api/rest/v1/json.php").
+		Post("/api/rest/v1.2/json.php").
 		Reply(200).
 		BodyString(responseBody)
 

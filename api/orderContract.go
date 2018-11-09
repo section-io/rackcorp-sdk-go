@@ -7,7 +7,7 @@ import (
 type OrderContract struct {
 	ContractId string `json:"contractId"`
 	CustomerId string `json:"customerId"`
-	DeviceId   string `json:"deviceID"`
+	DeviceId   string `json:"deviceId"`
 	Status     string `json:"status"` // TODO enum
 	Type       string `json:"type"`   // TODO enum
 	// TODO contractInfo, created, currency, lastBilled, modified, notes, referenceID, serviceBillId

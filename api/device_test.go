@@ -16,7 +16,7 @@ func TestDeviceGet(t *testing.T) {
 	client := getTestClient(t)
 
 	gock.New("https://api.rackcorp.net").
-		Post("/api/rest/v1/json.php").
+		Post("/api/rest/v1.2/json.php").
 		Reply(200).
 		BodyString(responseBody)
 
@@ -24,6 +24,28 @@ func TestDeviceGet(t *testing.T) {
 	assert.Nil(t, err, "DeviceGet error")
 
 	assert.Equal(t, "678", device.DeviceId, "DeviceId")
+
+	assert.True(t, gock.IsDone(), "gock.IsDone")
+}
+
+func TestDeviceUpdateFirewall(t *testing.T) {
+	defer gock.Off()
+
+	const deviceId = "678"
+	responseBody := "{\"code\": \"OK\", \"message\": \"good to go\"}"
+
+	client := getTestClient(t)
+
+	gock.New("https://api.rackcorp.net").
+		Post("/api/rest/v1.2/json.php").
+		Reply(200).
+		BodyString(responseBody)
+
+	policies := []FirewallPolicy{
+		FirewallPolicy{Direction: "INPUT"},
+	}
+	err := client.DeviceUpdateFirewall(deviceId, policies)
+	assert.Nil(t, err, "DeviceGet error")
 
 	assert.True(t, gock.IsDone(), "gock.IsDone")
 }
