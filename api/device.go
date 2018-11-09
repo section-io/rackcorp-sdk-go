@@ -10,13 +10,13 @@ type DeviceExtra struct {
 }
 
 type Device struct {
-	DeviceId         int           `json:"deviceId"`
+	DeviceId         int              `json:"deviceId"`
 	Name             string           `json:"name"`
-	CustomerId       int           `json:"customerId"`
+	CustomerId       int              `json:"customerId"`
 	PrimaryIP        string           `json:"primaryIP"`
 	Status           string           `json:"status"`
 	Extra            []DeviceExtra    `json:"extra"`
-	DataCenterId     int           `json:"dcid"`
+	DataCenterId     int              `json:"dcid"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies`
 	StdName          string           `json:"stdName"`
 	DateCreated      int64            `json:"dateCreated"`
@@ -41,7 +41,7 @@ type deviceGetResponse struct {
 
 type deviceUpdateRequest struct {
 	request
-	DeviceId         int           `json:"deviceId"`
+	DeviceId         int              `json:"deviceId"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies"`
 }
 
