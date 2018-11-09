@@ -10,13 +10,13 @@ type DeviceExtra struct {
 }
 
 type Device struct {
-	DeviceId         string           `json:"id"`
+	DeviceId         int           `json:"deviceId"`
 	Name             string           `json:"name"`
-	CustomerId       string           `json:"customerId"`
+	CustomerId       int           `json:"customerId"`
 	PrimaryIP        string           `json:"primaryIP"`
 	Status           string           `json:"status"`
 	Extra            []DeviceExtra    `json:"extra"`
-	DataCenterId     string           `json:"dcid"`
+	DataCenterId     int           `json:"dcid"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies`
 	StdName          string           `json:"stdName"`
 	DateCreated      int64            `json:"dateCreated"`
@@ -31,7 +31,7 @@ type Device struct {
 
 type deviceGetRequest struct {
 	request
-	DeviceId string `json:"deviceId"`
+	DeviceId int `json:"deviceId"`
 }
 
 type deviceGetResponse struct {
@@ -41,7 +41,7 @@ type deviceGetResponse struct {
 
 type deviceUpdateRequest struct {
 	request
-	DeviceId         string           `json:"deviceId"`
+	DeviceId         int           `json:"deviceId"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies"`
 }
 
@@ -49,8 +49,8 @@ type deviceUpdateResponse struct {
 	response
 }
 
-func (c *client) DeviceGet(deviceId string) (*Device, error) {
-	if deviceId == "" {
+func (c *client) DeviceGet(deviceId int) (*Device, error) {
+	if deviceId == 0 {
 		return nil, errors.New("deviceId parameter is required.")
 	}
 
@@ -62,7 +62,7 @@ func (c *client) DeviceGet(deviceId string) (*Device, error) {
 	var resp deviceGetResponse
 	err := c.httpPostJson(req, &resp)
 	if err != nil {
-		return nil, errors.Wrapf(err, "DeviceGet request failed for device Id '%s'.", deviceId)
+		return nil, errors.Wrapf(err, "DeviceGet request failed for device Id '%d'.", deviceId)
 	}
 
 	if resp.Code != "OK" || resp.Device == nil {
@@ -74,8 +74,8 @@ func (c *client) DeviceGet(deviceId string) (*Device, error) {
 
 //  Note that if you want to delete an existing policy, you need to have it's policy set to DELETED
 // (instead of ALLOW/REJECT/DISABLED) in the firewallPolicies array
-func (c *client) DeviceUpdateFirewall(deviceId string, firewallPolicies []FirewallPolicy) error {
-	if deviceId == "" {
+func (c *client) DeviceUpdateFirewall(deviceId int, firewallPolicies []FirewallPolicy) error {
+	if deviceId == 0 {
 		return errors.New("deviceId parameter is required")
 	}
 	if firewallPolicies == nil || len(firewallPolicies) == 0 {
@@ -91,7 +91,7 @@ func (c *client) DeviceUpdateFirewall(deviceId string, firewallPolicies []Firewa
 	var resp deviceUpdateResponse
 	err := c.httpPostJson(req, &resp)
 	if err != nil {
-		return errors.Wrapf(err, "UpdateFirewall request failed for device Id '%s'.", deviceId)
+		return errors.Wrapf(err, "UpdateFirewall request failed for device Id '%d'.", deviceId)
 	}
 
 	if resp.Code != "OK" {

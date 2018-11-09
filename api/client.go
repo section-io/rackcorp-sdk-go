@@ -35,9 +35,9 @@ type Client interface {
 
 	OrderContractGet(contractId string) (*OrderContract, error)
 
-	DeviceGet(deviceId string) (*Device, error)
-	DeviceUpdateFirewall(deviceId string, policies []FirewallPolicy) error
-	
+	DeviceGet(deviceId int) (*Device, error)
+	DeviceUpdateFirewall(deviceId int, policies []FirewallPolicy) error
+
 	TransactionCreate(transactionType string, objectType string, objectId string, confirm bool) (*Transaction, error)
 	TransactionGet(transactionId string) (*Transaction, error)
 	TransactionGetAll(filter TransactionFilter) ([]Transaction, int, error)

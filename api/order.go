@@ -23,6 +23,7 @@ type FirewallPolicy struct {
 	Protocol      string `json:"protocol,omitempty"`
 	PortFrom      string `json:"portFrom,omitempty"`
 	PortTo        string `json:"portTo,omitempty"`
+	DeviceId      int    `json:"deviceId"`
 }
 
 type Nic struct {
