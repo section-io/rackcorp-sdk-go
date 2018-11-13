@@ -23,8 +23,8 @@ type Device struct {
 	DateModified     int64            `json:"dateModified`
 	TrafficShared    bool             `json:"trafficShared,omitempty`
 	TrafficCurrent   string           `json:"trafficCurrent`
-	TrafficEstimated int              `json:"trafficEstimated"`
-	TrafficMB        int              `json:"trafficMB"`
+	TrafficEstimated float64          `json:"trafficEstimated"`
+	TrafficMB        int64            `json:"trafficMB"`
 	DCName           string           `json:"dcName"`
 	// TODO assets, dcDescription, ips, networkRoutes, ports,
 }

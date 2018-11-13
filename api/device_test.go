@@ -10,7 +10,7 @@ import (
 func TestDeviceGet(t *testing.T) {
 	defer gock.Off()
 
-	const deviceId = 678
+	const deviceId = 5075
 	responseBody := getTestDataString(t, "device.get.responseBody.json")
 
 	client := getTestClient(t)
@@ -23,7 +23,7 @@ func TestDeviceGet(t *testing.T) {
 	device, err := client.DeviceGet(deviceId)
 	assert.Nil(t, err, "DeviceGet error")
 
-	assert.Equal(t, 678, device.DeviceId, "DeviceId")
+	assert.Equal(t, 5075, device.DeviceId, "DeviceId")
 
 	assert.True(t, gock.IsDone(), "gock.IsDone")
 }
