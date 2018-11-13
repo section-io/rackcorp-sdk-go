@@ -14,6 +14,7 @@ type Storage struct {
 }
 
 type FirewallPolicy struct {
+	ID            int    `json:"id"`
 	Direction     string `json:"direction"`
 	Policy        string `json:"policy"`
 	Order         int    `json:"order"`
@@ -23,6 +24,8 @@ type FirewallPolicy struct {
 	Protocol      string `json:"protocol,omitempty"`
 	PortFrom      string `json:"portFrom,omitempty"`
 	PortTo        string `json:"portTo,omitempty"`
+	DeviceId      int    `json:"deviceId"`
+	OldDeviceID   string `json:"deviceID,omitempty"` //needed b/c of quirks with case-sensitivity in the GO json parser https://github.com/golang/go/issues/14750
 }
 
 type Nic struct {

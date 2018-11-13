@@ -35,7 +35,8 @@ type Client interface {
 
 	OrderContractGet(contractId string) (*OrderContract, error)
 
-	DeviceGet(deviceId string) (*Device, error)
+	DeviceGet(deviceId int) (*Device, error)
+	DeviceUpdateFirewall(deviceId int, policies []FirewallPolicy) error
 
 	TransactionCreate(transactionType string, objectType string, objectId string, confirm bool) (*Transaction, error)
 	TransactionGet(transactionId string) (*Transaction, error)
@@ -43,7 +44,7 @@ type Client interface {
 }
 
 const (
-	DefaultAddress = "https://api.rackcorp.net/api/rest/v1/json.php"
+	DefaultAddress = "https://api.rackcorp.net/api/rest/v1.2/json.php"
 )
 
 func NewClient(uuid string, secret string) (Client, error) {
