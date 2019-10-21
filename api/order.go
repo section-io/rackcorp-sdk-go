@@ -50,6 +50,7 @@ type ProductDetails struct {
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies,omitempty"`
 	Nics             []Nic            `json:"nics,omitempty"`
 	HostGroupID      *int             `json:"hostGroupId,omitempty"`
+	Location         string           `json:"location,omitempty"`
 }
 
 type Install struct {
