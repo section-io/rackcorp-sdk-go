@@ -44,7 +44,7 @@ type Client interface {
 }
 
 const (
-	DefaultAddress = "https://api.rackcorp.net/api/rest/v1.2/json.php"
+	DefaultAddress = "https://api.rackcorp.net/api/rest/v2.3/json.php"
 )
 
 func NewClient(uuid string, secret string) (Client, error) {

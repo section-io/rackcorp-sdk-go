@@ -16,7 +16,7 @@ func TestDeviceGet(t *testing.T) {
 	client := getTestClient(t)
 
 	gock.New("https://api.rackcorp.net").
-		Post("/api/rest/v1.2/json.php").
+		Post("/api/rest/v2.3/json.php").
 		Reply(200).
 		BodyString(responseBody)
 
@@ -37,7 +37,7 @@ func TestDeviceUpdateFirewall(t *testing.T) {
 	client := getTestClient(t)
 
 	gock.New("https://api.rackcorp.net").
-		Post("/api/rest/v1.2/json.php").
+		Post("/api/rest/v2.3/json.php").
 		Reply(200).
 		BodyString(responseBody)
 
