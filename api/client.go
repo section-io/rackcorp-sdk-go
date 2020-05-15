@@ -39,6 +39,7 @@ type Client interface {
 	DeviceUpdateFirewall(deviceId int, policies []FirewallPolicy) error
 
 	TransactionCreate(transactionType string, objectType string, objectId string, confirm bool) (*Transaction, error)
+	TransactionDeviceStartup(deviceId string, data TransactionStartupData) (*Transaction, error)
 	TransactionGet(transactionId string) (*Transaction, error)
 	TransactionGetAll(filter TransactionFilter) ([]Transaction, int, error)
 }

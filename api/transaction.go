@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/pkg/errors"
@@ -22,6 +23,7 @@ type transactionCreateRequest struct {
 	ObjectId   string `json:"objId"`
 	Type       string `json:"type"`
 	Confirm    bool   `json:"confirmation"`
+	Data       string `json:"data"`
 }
 
 type transactionCreateResponse struct {
@@ -82,6 +84,17 @@ type Transaction struct {
 	StatusInfo           string
 }
 
+type TransactionStartupData struct {
+	DeployMediaImageAccessKey    string `json:"deployMediaImageAccessKey,omitempty"`
+	DeployMediaImageAccessSecret string `json:"deployMediaImageAccessSecret,omitempty"`
+	DeployMediaImageBucket       string `json:"deployMediaImageBucket,omitempty"`
+	DeployMediaImageId           string `json:"deployMediaImageId,omitempty"`
+	DeployMediaImagePath         string `json:"deployMediaImagePath,omitempty"`
+	MetaData                     string `json:"metaData,omitempty"`
+	NetworkConfig                string `json:"networkConfig,omitempty"`
+	UserData                     string `json:"userData,omitempty"`
+}
+
 const (
 	TransactionObjectTypeDevice = "DEVICE"
 
@@ -123,7 +136,32 @@ func (t *existingTransaction) ToTransaction() *Transaction {
 	}
 }
 
+func (c *client) TransactionDeviceStartup(deviceId string, data TransactionStartupData) (*Transaction, error) {
+	var encodedData, err = json.Marshal(data)
+	if err != nil {
+		return nil, errors.Wrap(err, "Failed to JSON encode transaction startup data")
+	}
+
+	return c.transactionCreateInternal(
+		TransactionTypeStartup,
+		TransactionObjectTypeDevice,
+		deviceId,
+		true,
+		string(encodedData),
+	)
+}
+
 func (c *client) TransactionCreate(transactionType string, objectType string, objectId string, confirm bool) (*Transaction, error) {
+	return c.transactionCreateInternal(
+		transactionType,
+		objectType,
+		objectId,
+		confirm,
+		"",
+	)
+}
+
+func (c *client) transactionCreateInternal(transactionType string, objectType string, objectId string, confirm bool, data string) (*Transaction, error) {
 	if transactionType == "" {
 		return nil, errors.New("transactionType parameter is required.")
 	}
@@ -142,6 +180,7 @@ func (c *client) TransactionCreate(transactionType string, objectType string, ob
 		ObjectType: objectType,
 		ObjectId:   objectId,
 		Confirm:    confirm,
+		Data:       data,
 	}
 
 	var resp transactionCreateResponse
