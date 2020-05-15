@@ -4,18 +4,12 @@ import (
 	"github.com/pkg/errors"
 )
 
-type DeviceExtra struct {
-	Key   string      `json:"key"`
-	Value interface{} `json:"value"`
-}
-
 type Device struct {
 	DeviceId         int              `json:"deviceId"`
 	Name             string           `json:"name"`
 	CustomerId       int              `json:"customerId"`
 	PrimaryIP        string           `json:"primaryIP"`
 	Status           string           `json:"status"`
-	Extra            []DeviceExtra    `json:"extra"`
 	DataCenterId     int              `json:"dcid"`
 	FirewallPolicies []FirewallPolicy `json:"firewallPolicies`
 	StdName          string           `json:"stdName"`
@@ -27,6 +21,8 @@ type Device struct {
 	TrafficMB        int64            `json:"trafficMB"`
 	DCName           string           `json:"dcName"`
 	// TODO assets, dcDescription, ips, networkRoutes, ports,
+
+	Extra map[string]interface{} `json:"extra"`
 }
 
 type deviceGetRequest struct {
