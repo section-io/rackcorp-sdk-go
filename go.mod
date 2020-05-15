@@ -1,4 +1,4 @@
-module github.com/section-io/rackcorp-sdk-go
+module github.com/section-io/rackcorp-sdk-go/v2
 
 go 1.13
 
