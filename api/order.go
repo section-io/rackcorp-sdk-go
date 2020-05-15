@@ -54,7 +54,7 @@ type ProductDetails struct {
 }
 
 type Install struct {
-	OperatingSystem   string `json:"operatingSystem"`
+	OperatingSystem   string `json:"operatingSystem,omitempty"`
 	PostInstallScript string `json:"postInstallScript,omitempty"`
 	Template          string `json:"template,omitempty"`
 }
