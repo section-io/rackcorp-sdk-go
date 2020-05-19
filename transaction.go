@@ -84,15 +84,20 @@ type Transaction struct {
 	StatusInfo           string
 }
 
+type TransactionStartupCloudInit struct {
+	MetaData      string `json:"metaData,omitempty"`
+	NetworkConfig string `json:"networkConfig,omitempty"`
+	UserData      string `json:"userData,omitempty"`
+}
+
 type TransactionStartupData struct {
 	DeployMediaImageAccessKey    string `json:"deployMediaImageAccessKey,omitempty"`
 	DeployMediaImageAccessSecret string `json:"deployMediaImageAccessSecret,omitempty"`
 	DeployMediaImageBucket       string `json:"deployMediaImageBucket,omitempty"`
 	DeployMediaImageId           string `json:"deployMediaImageId,omitempty"`
 	DeployMediaImagePath         string `json:"deployMediaImagePath,omitempty"`
-	MetaData                     string `json:"metaData,omitempty"`
-	NetworkConfig                string `json:"networkConfig,omitempty"`
-	UserData                     string `json:"userData,omitempty"`
+
+	CloudInit TransactionStartupCloudInit `json:"cloudInit"`
 }
 
 const (
