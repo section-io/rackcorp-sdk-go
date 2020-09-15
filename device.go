@@ -11,12 +11,12 @@ type Device struct {
 	PrimaryIP        string           `json:"primaryIP"`
 	Status           string           `json:"status"`
 	DataCenterId     int              `json:"dcid"`
-	FirewallPolicies []FirewallPolicy `json:"firewallPolicies`
+	FirewallPolicies []FirewallPolicy `json:"firewallPolicies"`
 	StdName          string           `json:"stdName"`
 	DateCreated      int64            `json:"dateCreated"`
-	DateModified     int64            `json:"dateModified`
-	TrafficShared    bool             `json:"trafficShared,omitempty`
-	TrafficCurrent   string           `json:"trafficCurrent`
+	DateModified     int64            `json:"dateModified"`
+	TrafficShared    bool             `json:"trafficShared,omitempty"`
+	TrafficCurrent   string           `json:"trafficCurrent"`
 	TrafficEstimated float64          `json:"trafficEstimated"`
 	TrafficMB        int64            `json:"trafficMB"`
 	DCName           string           `json:"dcName"`
