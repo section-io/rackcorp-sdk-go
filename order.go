@@ -51,6 +51,7 @@ type ProductDetails struct {
 	Nics             []Nic            `json:"nics,omitempty"`
 	HostGroupID      *int             `json:"hostGroupId,omitempty"`
 	Location         string           `json:"location,omitempty"`
+	Timezone         string           `json:"timezone,omitempty"`
 }
 
 type Install struct {
